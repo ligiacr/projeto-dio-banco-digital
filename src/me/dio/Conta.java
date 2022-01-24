@@ -32,6 +32,12 @@ public abstract class Conta implements InterfaceConta {
         contaDestino.depositar(valor);
     }
 
+    @Override
+    public void estornar(Conta contaDestino, double valor) {
+        contaDestino.sacar(valor);
+        this.depositar(valor);
+    }
+
     public int getAgencia() {
         return agencia;
     }
@@ -46,6 +52,7 @@ public abstract class Conta implements InterfaceConta {
 
     protected void imprimirInfosComuns() {
         System.out.println(String.format ("Titular: %s", this.cliente.getNome()));
+        System.out.println(String.format ("CPF: %s", this.cliente.getCpf()));
         System.out.println(String.format ("Agencia: %d", this.agencia));
         System.out.println(String.format ("Numero: %d", this.numero));
         System.out.println(String.format ("Saldo: %.2f", this.saldo));
